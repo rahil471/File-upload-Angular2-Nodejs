@@ -27,8 +27,13 @@ coverage
 build/Release
 
 # Dependency directories
-node_modules
+node-app/node_modules
+angular2-app/node_modules
 jspm_packages
+
+# Transpiled JS
+angular2-app/app/transpiled-js
+
 
 # Optional npm cache directory
 .npm
