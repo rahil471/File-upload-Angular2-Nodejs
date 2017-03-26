@@ -5,7 +5,7 @@
 
     app.use(function(req, res, next) { //allow cross origin requests
         res.setHeader("Access-Control-Allow-Methods", "POST, PUT, OPTIONS, DELETE, GET");
-        res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+        res.header("Access-Control-Allow-Origin", "http://localhost:3001");
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         res.header("Access-Control-Allow-Credentials", true);
         next();
@@ -13,7 +13,8 @@
 
     /** Serving from the same express Server
     No cors required */
-    app.use(express.static('../client'));
+    app.use(express.static(path.normalize('../angular2-app')));
+    app.use('/node_modules', express.static(path.normalize('../angular2-app/node_modules/')));
     app.use(bodyParser.json());  
 
     var storage = multer.diskStorage({ //multers disk storage settings
@@ -29,6 +30,11 @@
     var upload = multer({ //multer settings
                     storage: storage
                 }).single('file');
+
+    /** serve the systemjs.config.js as it's not directly available in the client */
+    app.get('/systemjs.config.js', function (req, res) {
+        res.sendFile('./../angular2-app/systemjs.config.js');
+    });
 
     /** API path that will upload the files */
     app.post('/upload', function(req, res) {
