@@ -11,7 +11,7 @@ File upload with angular 2 and node.js
 - Open a new terminal window.
 - Navigate into `/angular2-app/`
 - Install all dependencies `npm install`
-- In some cases you might have to isntall `lite-server` globally `npm i lite-server -g`
+- In some cases you might have to install `lite-server` globally `npm i lite-server -g`
 - Run the Angular 2 app using `npm start`
 
 Once both applicatons are running you should be able to upload the files.
